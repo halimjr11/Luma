@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidx.navigation.safe.args)
 }
 
 android {
@@ -54,6 +55,9 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.koin.android)
     implementation(libs.koin.core)
+    implementation(libs.timber)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
     androidTestImplementation(libs.androidx.junit)
