@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Base Colors -->
+    <color name="luma_indigo_mist">#667BB0</color>
+    <color name="luma_sky_calm">#89A6C5</color>
+    <color name="luma_mint_cloud">#A9CCC9</color>
+    <color name="luma_soft_cream">#F7F8D5</color>
+    <color name="luma_midnight">#121212</color>
+
+    <!-- LIGHT THEME  -->
+    <color name="light_primary">@color/luma_indigo_mist</color>
+    <color name="light_onPrimary">#FFFFFF</color>
+    <color name="light_primaryContainer">@color/luma_sky_calm</color>
+    <color name="light_onPrimaryContainer">#0E1725</color>
+
+    <color name="light_secondary">@color/luma_mint_cloud</color>
+    <color name="light_onSecondary">#0E1725</color>
+    <color name="light_secondaryContainer">#E0F0EF</color>
+    <color name="light_onSecondaryContainer">#1C2B2B</color>
+
+    <color name="light_tertiary">@color/luma_soft_cream</color>
+    <color name="light_onTertiary">#2E2E2E</color>
+
+    <color name="light_background">@color/luma_soft_cream</color>
+    <color name="light_onBackground">#1C1C1C</color>
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_onSurface">#1C1C1C</color>
+
+    <color name="light_outline">#B6C4C2</color>
+    <color name="light_error">#BA1A1A</color>
+    <color name="light_onError">#FFFFFF</color>
+    <color name="light_highlight">@color/luma_mint_cloud</color>
+
+    <!-- DARK THEME -->
+    <color name="dark_primary">@color/luma_mint_cloud</color>
+    <color name="dark_onPrimary">#0D0D0D</color>
+    <color name="dark_primaryContainer">@color/luma_indigo_mist</color>
+    <color name="dark_onPrimaryContainer">#E0F0EF</color>
+
+    <color name="dark_secondary">@color/luma_sky_calm</color>
+    <color name="dark_onSecondary">#0E1725</color>
+    <color name="dark_secondaryContainer">#1E1E1E</color>
+    <color name="dark_onSecondaryContainer">#E6E6E6</color>
+
+    <color name="dark_tertiary">@color/luma_soft_cream</color>
+    <color name="dark_onTertiary">#0E0E0E</color>
+
+    <color name="dark_background">@color/luma_midnight</color>
+    <color name="dark_onBackground">#E6E6E6</color>
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="dark_onSurface">#DADADA</color>
+
+    <color name="dark_outline">#2D3A40</color>
+    <color name="dark_error">#CF6679</color>
+    <color name="dark_onError">#0D0D0D</color>
+    <color name="dark_highlight">@color/luma_mint_cloud</color>
+</resources>
