@@ -4,9 +4,11 @@ import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
 import androidx.core.widget.doOnTextChanged
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.halimjr11.luma.R
+import com.google.android.material.R as MaterialRes
 
 class LumaInputField @JvmOverloads constructor(
     context: Context,
@@ -24,6 +26,7 @@ class LumaInputField @JvmOverloads constructor(
         addView(editTextField)
         setupEditText()
 
+        // Gunakan atribut dari XML
         context.theme.obtainStyledAttributes(attrs, R.styleable.LumaInputField, 0, 0).apply {
             try {
                 val modeValue = getInt(R.styleable.LumaInputField_inputTypeMode, 0)
@@ -38,7 +41,6 @@ class LumaInputField @JvmOverloads constructor(
 
                 setupInputType()
                 if (!customHint.isNullOrEmpty()) hint = customHint
-
             } finally {
                 recycle()
             }
@@ -49,16 +51,16 @@ class LumaInputField @JvmOverloads constructor(
         when (inputTypeMode) {
             InputTypeMode.USERNAME -> {
                 if (hint.isNullOrEmpty()) hint = context.getString(R.string.hint_username)
-                editTextField.inputType = InputType.TYPE_CLASS_TEXT
+                editTextField.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME
                 endIconMode = END_ICON_NONE
-
             }
 
             InputTypeMode.EMAIL -> {
                 if (hint.isNullOrEmpty()) hint = context.getString(R.string.hint_email)
-                editTextField.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                editTextField.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
                 endIconMode = END_ICON_NONE
-
             }
 
             InputTypeMode.PASSWORD -> {
@@ -68,7 +70,10 @@ class LumaInputField @JvmOverloads constructor(
                 endIconMode = END_ICON_PASSWORD_TOGGLE
             }
 
-            else -> Unit
+            else -> {
+                editTextField.inputType = InputType.TYPE_CLASS_TEXT
+                endIconMode = END_ICON_NONE
+            }
         }
     }
 
@@ -76,6 +81,24 @@ class LumaInputField @JvmOverloads constructor(
         editTextField.layoutParams = LayoutParams(
             LayoutParams.MATCH_PARENT,
             LayoutParams.WRAP_CONTENT
+        )
+
+        editTextField.setTextAppearance(R.style.TextAppearance_Luma_Body)
+        editTextField.setBackgroundResource(0)
+        editTextField.textSize = 16f
+        editTextField.isSingleLine = true
+        editTextField.setPadding(0, 24, 0, 24)
+        editTextField.setTextColor(
+            MaterialColors.getColor(
+                editTextField,
+                MaterialRes.attr.colorOnSurface
+            )
+        )
+        editTextField.setHintTextColor(
+            MaterialColors.getColor(
+                editTextField,
+                MaterialRes.attr.colorOnSurfaceVariant
+            )
         )
 
         if (enableAutoValidate) {
@@ -88,7 +111,7 @@ class LumaInputField @JvmOverloads constructor(
     private fun validate(input: String) {
         when (inputTypeMode) {
             InputTypeMode.USERNAME -> {
-                error = if (input.length < 4)
+                error = if (input.length < 3)
                     context.getString(R.string.error_username_short)
                 else null
             }
