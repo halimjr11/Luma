@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.halimjr11.luma.databinding.ActivitySplashBinding
-import com.halimjr11.luma.view.MainActivity
+import com.halimjr11.luma.view.feature.main.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
