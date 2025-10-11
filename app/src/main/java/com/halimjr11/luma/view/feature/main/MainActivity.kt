@@ -1,4 +1,4 @@
-package com.halimjr11.luma.view
+package com.halimjr11.luma.view.feature.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
