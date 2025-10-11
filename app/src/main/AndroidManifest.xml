@@ -14,7 +14,13 @@
         android:theme="@style/Theme.Luma"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.feature.auth.AuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.feature.splash.SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

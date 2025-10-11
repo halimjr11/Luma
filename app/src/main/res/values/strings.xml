@@ -3,9 +3,15 @@
     <string name="hint_username">Username</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-
     <string name="error_username_short">Username must be at least 3 characters</string>
     <string name="error_email_invalid">Invalid email format</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="welcome_back">Welcome back! Let’s continue your story.</string>
+    <string name="label_no_account">Don’t have an account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="welcome_register">Join Luma and start sharing your calm stories.</string>
+    <string name="label_have_account">Already have an account?</string>
 
 </resources>
