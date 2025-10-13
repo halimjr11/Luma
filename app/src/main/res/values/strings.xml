@@ -13,5 +13,9 @@
     <string name="create_account">Create Account</string>
     <string name="welcome_register">Join Luma and start sharing your calm stories.</string>
     <string name="label_have_account">Already have an account?</string>
+    <string name="story_detail_title">Detail Story</string>
+    <string name="detail_date">13 Oct 2025</string>
+    <string name="detail_person_name">Person Name</string>
+    <string name="detail_image">Detail Image</string>
 
 </resources>
