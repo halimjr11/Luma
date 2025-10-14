@@ -23,5 +23,10 @@
     <string name="hint_description">Description</string>
     <string name="button_upload">Upload Story</string>
     <string name="new_story_title">New Story</string>
-
+    <string name="retry_button">Retry</string>
+    <string name="carousel_event_banner">Carousel Event Banner</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="featured_stories">Featured Stories</string>
+    <string name="more_stories">More Stories</string>
+    <string name="story_image">Story image</string>
 </resources>
