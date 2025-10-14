@@ -1,51 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/storyDetailRoot"
+    android:id="@+id/storyDetailContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:padding="16dp"
     tools:context=".view.feature.main.fragments.DetailStoryFragment">
 
-    <!-- App Bar -->
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.Material3.Toolbar.Surface"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="0dp"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/story_detail_title"
-            app:titleTextAppearance="@style/TextAppearance.Luma.TitleLarge" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/detailScroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/detailContainer"
+            android:id="@+id/detailContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
 
-            <!-- Image Card -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_detail_image"
+                android:id="@+id/cardStoryImage"
                 android:layout_width="0dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="-16dp"
+                android:layout_height="240dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="2dp"
+                app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -56,51 +41,74 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/detail_image"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_luma_background" />
+                    tools:src="@drawable/ic_luma_background" />
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Name -->
             <TextView
                 android:id="@+id/tv_detail_name"
-                style="@style/TextAppearance.Luma.Title"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/detail_person_name"
                 android:textColor="?attr/colorOnSurface"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_detail_image" />
+                app:layout_constraintTop_toBottomOf="@id/cardStoryImage"
+                tools:text="lil cuanki" />
 
-            <!-- Created At -->
             <TextView
-                android:id="@+id/tvCreatedAt"
-                style="@style/TextAppearance.Luma.Body"
+                android:id="@+id/tvStoryUploader"
+                style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/detail_date"
-                android:textColor="?attr/colorOutlineVariant"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_detail_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_name"
+                tools:text="Uploaded by John Doe" />
 
-            <!-- Description -->
+            <TextView
+                android:id="@+id/tvStoryDate"
+                style="@style/TextAppearance.Material3.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOutlineVariant"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStoryUploader"
+                tools:text="October 13, 2025" />
+
             <TextView
                 android:id="@+id/tv_detail_description"
-                style="@style/TextAppearance.Luma.Label"
+                style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="4dp"
                 android:textColor="?attr/colorOnSurfaceVariant"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvCreatedAt" />
-
+                app:layout_constraintTop_toBottomOf="@id/tvStoryDate"
+                tools:text="This is the story description..." />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <ProgressBar
+        android:id="@+id/progressLoading"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.halimjr11.luma.ui.components.ErrorView
+        android:id="@+id/evDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
