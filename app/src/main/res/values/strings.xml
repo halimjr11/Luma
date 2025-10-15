@@ -13,9 +13,6 @@
     <string name="create_account">Create Account</string>
     <string name="welcome_register">Join Luma and start sharing your calm stories.</string>
     <string name="label_have_account">Already have an account?</string>
-    <string name="story_detail_title">Detail Story</string>
-    <string name="detail_date">13 Oct 2025</string>
-    <string name="detail_person_name">Person Name</string>
     <string name="detail_image">Detail Image</string>
     <string name="image_preview">Image Preview</string>
     <string name="button_camera">Camera</string>
@@ -26,7 +23,17 @@
     <string name="retry_button">Retry</string>
     <string name="carousel_event_banner">Carousel Event Banner</string>
     <string name="something_went_wrong">Something went wrong!</string>
-    <string name="featured_stories">Featured Stories</string>
     <string name="more_stories">More Stories</string>
     <string name="story_image">Story image</string>
+    <string name="upload_story_failed">Oops! We couldn’t upload your story. Try again in a moment.</string>
+    <string name="upload_story_image_error">You haven’t added a photo yet. Capture or choose one before uploading!</string>
+    <string name="upload_story_desc_error">You haven\'t added a description yet. Please fill it in first!</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="switch_camera">Switch camera</string>
+    <string name="button_create">Button Create Story</string>
+    <string name="settings_title">Settings</string>
+    <string name="theme_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="language_hint">Switch between Bahasa and English</string>
+    <string name="setting">Setting</string>
 </resources>

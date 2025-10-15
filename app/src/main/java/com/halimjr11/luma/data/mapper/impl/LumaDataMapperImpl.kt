@@ -11,8 +11,25 @@ import com.halimjr11.luma.domain.model.AuthDomain
 import com.halimjr11.luma.domain.model.StoryDomain
 import com.halimjr11.luma.domain.model.UploadStoryDomain
 import kotlinx.coroutines.withContext
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class LumaDataMapperImpl(private val dispatcher: CoroutineDispatcherProvider) : LumaDataMapper {
+    private val outputFormatter =
+        DateTimeFormatter.ofPattern("MMMM d, yyyy · HH:mm", Locale.getDefault())
+
+    private fun formatDateTime(input: String): String {
+        return try {
+            val instant = Instant.parse(input)
+            val localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime()
+            localDateTime.format(outputFormatter)
+        } catch (e: Exception) {
+            input
+        }
+    }
+
     override suspend fun mapAuth(
         response: AuthResponse
     ): AuthDomain = withContext(dispatcher.io) {
@@ -37,7 +54,7 @@ class LumaDataMapperImpl(private val dispatcher: CoroutineDispatcherProvider) : 
             name = response.name.orEmpty(),
             description = response.description.orEmpty(),
             photoUrl = response.photoUrl.orEmpty(),
-            createdAt = response.createdAt.orEmpty(),
+            createdAt = formatDateTime(response.createdAt.orEmpty()),
             lat = response.lat.orZero(),
             lon = response.lon.orZero()
         )

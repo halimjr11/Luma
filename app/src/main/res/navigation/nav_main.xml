@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainStoryFragment">
 
+    <fragment
+        android:id="@+id/mainStoryFragment"
+        android:name="com.halimjr11.luma.view.feature.main.fragments.MainStoryFragment"
+        android:label="Luma Story"
+        tools:layout="@layout/fragment_main_story">
+        <action
+            android:id="@+id/action_mainStoryFragment_to_detailStoryFragment"
+            app:destination="@id/detailStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailStoryFragment"
+        android:name="com.halimjr11.luma.view.feature.main.fragments.DetailStoryFragment"
+        android:label="Detail Story"
+        tools:layout="@layout/fragment_detail_story">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

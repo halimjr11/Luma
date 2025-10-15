@@ -1,9 +1,50 @@
 package com.halimjr11.luma.view.feature.auth.fragments
 
-import androidx.lifecycle.ViewModel
+import android.content.Intent
 import com.halimjr11.luma.databinding.FragmentLoginBinding
 import com.halimjr11.luma.ui.base.BaseFragment
+import com.halimjr11.luma.ui.helper.launchAndCollect
+import com.halimjr11.luma.utils.UiState
+import com.halimjr11.luma.view.feature.auth.di.loadLoginModule
+import com.halimjr11.luma.view.feature.auth.viewmodel.LoginViewModel
+import com.halimjr11.luma.view.feature.main.MainActivity
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.scope.Scope
 
-class LoginFragment : BaseFragment<FragmentLoginBinding, ViewModel>(FragmentLoginBinding::inflate) {
+class LoginFragment :
+    BaseFragment<FragmentLoginBinding, LoginViewModel>(FragmentLoginBinding::inflate),
+    AndroidScopeComponent {
+    override val viewModel: LoginViewModel by viewModel()
+    override val scope: Scope by fragmentScope()
 
+    init {
+        loadLoginModule()
+    }
+
+    override fun setupListeners() = with(binding) {
+        btnRegister.setOnClickListener {
+            LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+        }
+        btnSignIn.setOnClickListener {
+            val email = edLoginEmail.getText()
+            val password = edLoginPassword.getText()
+            viewModel.doLogin(email, password)
+        }
+        super.setupListeners()
+    }
+
+    override fun observeData() = with(viewModel) {
+        launchAndCollect(loginState) {
+            when (it) {
+                is UiState.Success -> {
+                    activity?.startActivity(Intent(activity, MainActivity::class.java))
+                }
+
+                else -> {}
+            }
+        }
+        super.observeData()
+    }
 }

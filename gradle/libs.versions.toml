@@ -20,6 +20,7 @@ activity = "1.11.0"
 constraintlayout = "2.2.1"
 mockk = "1.14.6"
 navigationUiKtx = "2.9.5"
+playServicesLocation = "21.3.0"
 timber = "5.0.1"
 
 [libraries]
@@ -52,6 +53,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 

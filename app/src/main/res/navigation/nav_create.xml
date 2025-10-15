@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_create.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/createStoryFragment">
 
+    <fragment
+        android:id="@+id/createStoryFragment"
+        android:name="com.halimjr11.luma.view.feature.create.fragments.CreateStoryFragment"
+        android:label="@string/new_story_title"
+        tools:layout="@layout/fragment_create_story">
+        <action
+            android:id="@+id/action_createStoryFragment_to_imageCaptureFragment"
+            app:destination="@id/imageCaptureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageCaptureFragment"
+        android:name="com.halimjr11.luma.view.feature.create.fragments.ImageCaptureFragment"
+        android:label="Image Capture"
+        tools:layout="@layout/fragment_image_capture" />
 </navigation>
