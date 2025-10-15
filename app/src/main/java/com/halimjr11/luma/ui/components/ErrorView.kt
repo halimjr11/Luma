@@ -4,8 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.halimjr11.eventora.databinding.ErrorViewBinding
-import com.halimjr11.eventora.ui.helper.gone
+import com.halimjr11.luma.databinding.ErrorViewBinding
 
 class ErrorView @JvmOverloads constructor(
     context: Context,
@@ -28,11 +27,5 @@ class ErrorView @JvmOverloads constructor(
         binding.tvErrorMessage.text = message
         binding.lottieError.playAnimation()
         onRetry = onClick
-    }
-
-    fun setMessageNoButton(message: String) {
-        binding.tvErrorMessage.text = message
-        binding.lottieError.playAnimation()
-        binding.btnRetry.gone()
     }
 }

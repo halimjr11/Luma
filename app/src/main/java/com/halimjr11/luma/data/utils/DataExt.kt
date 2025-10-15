@@ -1,5 +1,7 @@
 package com.halimjr11.luma.data.utils
 
+import com.halimjr11.luma.utils.Constants.NETWORK_ERROR
+import com.halimjr11.luma.utils.Constants.UNKNOWN_ERROR
 import com.halimjr11.luma.utils.DomainResult
 import retrofit2.HttpException
 import java.io.IOException
@@ -10,10 +12,6 @@ fun Int?.orZero(): Int {
 
 fun Double?.orZero(): Double {
     return this ?: 0.0
-}
-
-fun Float?.orZero(): Float {
-    return this ?: 0f
 }
 
 fun Boolean?.orFalse(): Boolean {
@@ -29,8 +27,8 @@ suspend inline fun <T> safeApiCall(
     } catch (e: HttpException) {
         DomainResult.Error(e.message(), e.code())
     } catch (e: IOException) {
-        DomainResult.Error("Network error, please check your connection")
+        DomainResult.Error(NETWORK_ERROR)
     } catch (e: Exception) {
-        DomainResult.Error(e.localizedMessage ?: "Unknown error")
+        DomainResult.Error(e.localizedMessage ?: UNKNOWN_ERROR)
     }
 }

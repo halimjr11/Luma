@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.feature.create.fragments.CreateStoryFragment">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
@@ -18,13 +17,15 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
-            style="@style/Widget.Material3.Toolbar.Surface"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorSurface"
             android:elevation="0dp"
             app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface"
             app:title="@string/new_story_title"
-            app:titleTextAppearance="@style/TextAppearance.Luma.TitleLarge" />
+            app:titleTextAppearance="@style/TextAppearance.Luma.TitleLarge"
+            app:titleTextColor="?attr/colorOnSurface" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -48,7 +49,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/image_preview"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_luma_background" />
+            android:src="@drawable/ic_placeholder" />
     </com.google.android.material.card.MaterialCardView>
 
 
@@ -59,12 +60,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="?attr/colorPrimary"
         android:drawableStart="@drawable/ic_camera"
         android:text="@string/button_camera"
+        android:textColor="@color/white"
         app:iconPadding="8dp"
         app:layout_constraintEnd_toStartOf="@id/btnGallery"
-        app:layout_constraintHorizontalChainStyle="spread"
-        app:layout_constraintHorizontalWeight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageCard" />
 
@@ -74,11 +75,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="?attr/colorPrimary"
         android:drawableStart="@drawable/ic_gallery"
         android:text="@string/button_gallery"
+        android:textColor="@color/white"
         app:iconPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontalWeight="1"
         app:layout_constraintStart_toEndOf="@id/btnCamera"
         app:layout_constraintTop_toTopOf="@id/btnCamera" />
 
@@ -100,7 +102,6 @@
         app:layout_constraintTop_toBottomOf="@id/btnCamera">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_add_description"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:gravity="top"

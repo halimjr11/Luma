@@ -3,11 +3,14 @@ package com.halimjr11.luma.ui.components
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import android.widget.FrameLayout
+import androidx.core.view.ViewCompat
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.halimjr11.luma.R
+import com.halimjr11.luma.data.utils.orZero
 import com.google.android.material.R as MaterialRes
 
 class LumaInputField @JvmOverloads constructor(
@@ -25,8 +28,8 @@ class LumaInputField @JvmOverloads constructor(
     init {
         addView(editTextField)
         setupEditText()
-
-        // Gunakan atribut dari XML
+        ViewCompat.setBackgroundTintList(this, null)
+        context.theme.applyStyle(R.style.Widget_Luma_TextInputLayout, true)
         context.theme.obtainStyledAttributes(attrs, R.styleable.LumaInputField, 0, 0).apply {
             try {
                 val modeValue = getInt(R.styleable.LumaInputField_inputTypeMode, 0)
@@ -38,7 +41,7 @@ class LumaInputField @JvmOverloads constructor(
 
                 val customHint = getString(R.styleable.LumaInputField_hintText)
                 enableAutoValidate = getBoolean(R.styleable.LumaInputField_enableAutoValidate, true)
-
+                setBoxCornerRadii(12f, 0f, 0f, 12f)
                 setupInputType()
                 if (!customHint.isNullOrEmpty()) hint = customHint
             } finally {
@@ -78,7 +81,7 @@ class LumaInputField @JvmOverloads constructor(
     }
 
     private fun setupEditText() {
-        editTextField.layoutParams = LayoutParams(
+        editTextField.layoutParams = FrameLayout.LayoutParams(
             LayoutParams.MATCH_PARENT,
             LayoutParams.WRAP_CONTENT
         )
@@ -103,7 +106,9 @@ class LumaInputField @JvmOverloads constructor(
 
         if (enableAutoValidate) {
             editTextField.doOnTextChanged { text, _, _, _ ->
-                validate(text.toString())
+                if (text?.length.orZero() > 0) {
+                    validate(text.toString())
+                }
             }
         }
     }

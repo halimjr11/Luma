@@ -6,6 +6,7 @@ import com.halimjr11.luma.data.model.AuthResponse
 import com.halimjr11.luma.data.model.StoryResponse
 import com.halimjr11.luma.data.model.UploadStoryResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -32,7 +33,7 @@ interface LumaService {
         @Query("location") location: Int? = null
     ): BaseResponse<List<StoryResponse?>>
 
-    @GET("stories")
+    @GET("stories/{id}")
     suspend fun getDetailStories(
         @Path("id") id: String = ""
     ): BaseResponse<StoryResponse>
@@ -40,6 +41,9 @@ interface LumaService {
     @Multipart
     @POST("stories")
     suspend fun uploadStory(
-        @Part request: MultipartBody,
+        @Part("description") description: RequestBody,
+        @Part file: MultipartBody.Part,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): UploadStoryResponse
 }

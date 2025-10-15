@@ -49,10 +49,6 @@
     </style>
 
     <!-- Luma Typography -->
-    <style name="TextAppearance.Luma.Display" parent="TextAppearance.Material3.DisplayLarge">
-        <item name="fontFamily">@font/poppins_family</item>
-        <item name="android:textColor">?attr/colorOnBackground</item>
-    </style>
 
     <style name="TextAppearance.Luma.Headline" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="fontFamily">@font/poppins_family</item>
@@ -60,11 +56,6 @@
     </style>
 
     <style name="TextAppearance.Luma.TitleLarge" parent="TextAppearance.Material3.TitleMedium">
-        <item name="fontFamily">@font/poppins_family</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
-
-    <style name="TextAppearance.Luma.Title" parent="TextAppearance.Material3.TitleMedium">
         <item name="fontFamily">@font/poppins_family</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
@@ -79,13 +70,19 @@
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="ShapeAppearance.Luma.BottomRounded" parent="ShapeAppearance.Material3.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">0dp</item>
-        <item name="cornerSizeTopRight">0dp</item>
-        <item name="cornerSizeBottomLeft">16dp</item>
-        <item name="cornerSizeBottomRight">16dp</item>
+    <style name="Widget.Luma.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/light_primary</item>
+        <item name="boxBackgroundColor">@color/light_surface</item>
+        <item name="hintTextColor">@color/light_highlight</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="errorTextColor">@color/light_error</item>
+        <item name="helperTextTextColor">@color/light_highlight</item>
     </style>
-
 
 </resources>

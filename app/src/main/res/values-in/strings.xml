@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Luma</string>
+    <string name="hint_username">Nama pengguna</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Kata sandi</string>
+    <string name="error_username_short">Nama pengguna harus terdiri dari minimal 3 karakter</string>
+    <string name="error_email_invalid">Format email tidak valid</string>
+    <string name="error_password_short">Kata sandi harus terdiri dari minimal 8 karakter</string>
+    <string name="sign_in">Masuk</string>
+    <string name="sign_up">Daftar</string>
+    <string name="welcome_back">Selamat datang kembali! Lanjutkan ceritamu.</string>
+    <string name="label_no_account">Belum punya akun?</string>
+    <string name="create_account">Buat Akun</string>
+    <string name="welcome_register">Bergabunglah dengan Luma dan mulai bagikan cerita tenangmu.</string>
+    <string name="label_have_account">Sudah punya akun?</string>
+    <string name="detail_image">Gambar Detail</string>
+    <string name="image_preview">Pratinjau Gambar</string>
+    <string name="button_camera">Kamera</string>
+    <string name="button_gallery">Galeri</string>
+    <string name="hint_description">Deskripsi</string>
+    <string name="button_upload">Unggah Cerita</string>
+    <string name="new_story_title">Cerita Baru</string>
+    <string name="retry_button">Coba Lagi</string>
+    <string name="carousel_event_banner">Banner Acara</string>
+    <string name="something_went_wrong">Terjadi kesalahan!</string>
+    <string name="more_stories">Cerita Lainnya</string>
+    <string name="story_image">Gambar cerita</string>
+    <string name="upload_story_failed">Ups! Kami tidak dapat mengunggah ceritamu. Coba lagi sebentar lagi.</string>
+    <string name="upload_story_image_error">Anda belum menambahkan foto. Ambil atau pilih foto sebelum mengunggahnya!</string>
+    <string name="upload_story_desc_error">Anda belum menambahkan deskripsi. silahkan isi terlebih dahulu!</string>
+    <string name="capture_image">Ambil gambar</string>
+    <string name="switch_camera">Ganti kamera</string>
+    <string name="button_create">Tombol buat cerita</string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="theme_mode">Mode Gelap</string>
+    <string name="language">Bahasa</string>
+    <string name="language_hint">Beralih antara Bahasa Indonesia dan Inggris</string>
+    <string name="setting">Setting</string>
+</resources>
