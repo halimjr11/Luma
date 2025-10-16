@@ -111,6 +111,7 @@
         app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
 
     <TextView
+        android:id="@+id/btn_to_login"
         style="@style/TextAppearance.Luma.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

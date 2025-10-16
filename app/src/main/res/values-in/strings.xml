@@ -37,4 +37,5 @@
     <string name="language">Bahasa</string>
     <string name="language_hint">Beralih antara Bahasa Indonesia dan Inggris</string>
     <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_story_photo"
+            android:id="@+id/iv_item_photo"
             android:layout_width="0dp"
             android:layout_height="180dp"
             android:contentDescription="@string/story_image"
@@ -24,7 +24,7 @@
             tools:src="@drawable/ic_luma_background" />
 
         <TextView
-            android:id="@+id/tv_story_name"
+            android:id="@+id/tv_item_name"
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -36,10 +36,11 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_story_photo"
+            app:layout_constraintTop_toBottomOf="@id/iv_item_photo"
             tools:text="John Doe" />
 
         <TextView
+            android:id="@+id/tv_item_description"
             style="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_story_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_name"
             tools:text="This is a short story description to show how text wraps." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

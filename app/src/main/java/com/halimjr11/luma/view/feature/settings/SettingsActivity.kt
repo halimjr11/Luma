@@ -1,5 +1,6 @@
 package com.halimjr11.luma.view.feature.settings
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.halimjr11.luma.databinding.ActivitySettingsBinding
 import com.halimjr11.luma.ui.helper.launchAndCollect
 import com.halimjr11.luma.utils.Constants.LANG_EN
 import com.halimjr11.luma.utils.Constants.LANG_ID
+import com.halimjr11.luma.view.feature.auth.AuthActivity
 import com.halimjr11.luma.view.feature.settings.di.loadSettingsModule
 import com.halimjr11.luma.view.feature.settings.viewmodel.SettingsViewModel
 import org.koin.android.scope.AndroidScopeComponent
@@ -60,6 +62,9 @@ class SettingsActivity : AppCompatActivity(), AndroidScopeComponent {
             }
             viewModel.toggleLanguage(if (isChecked) LANG_ID else LANG_EN)
         }
+        actionLogout.setOnClickListener {
+            viewModel.doLogout()
+        }
     }
 
     private fun observeData() = viewModel.run {
@@ -73,6 +78,15 @@ class SettingsActivity : AppCompatActivity(), AndroidScopeComponent {
         launchAndCollect(currentLanguage) {
             binding.run {
                 switchLanguage.isChecked = it == LANG_ID
+            }
+        }
+        launchAndCollect(logout) { loggedOut ->
+            println("Jalanan ==> check logout $loggedOut")
+            if (loggedOut) {
+                val intent = Intent(this@SettingsActivity, AuthActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
             }
         }
     }

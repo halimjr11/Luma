@@ -33,6 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/iv_detail_photo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/detail_image"
@@ -74,6 +75,7 @@
                 tools:text="October 13, 2025" />
 
             <TextView
+                android:id="@+id/tv_detail_description"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
