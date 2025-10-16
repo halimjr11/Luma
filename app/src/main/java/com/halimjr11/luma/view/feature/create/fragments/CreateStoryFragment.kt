@@ -101,7 +101,7 @@ class CreateStoryFragment : BaseFragment<FragmentCreateStoryBinding, CreateViewM
             activity?.finish()
         }
 
-        btnUpload.setOnClickListener {
+        buttonAdd.setOnClickListener {
             val message = resources.getString(R.string.upload_story_image_error)
             val descError = resources.getString(R.string.upload_story_desc_error)
             val description = edAddDescription.text.toString()

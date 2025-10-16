@@ -13,7 +13,7 @@ fun loadSettingsModule() {
         scope<SettingsActivity> { scoped { ThemeManager(get()) } }
     }
     val viewModelModule = module {
-        scope<SettingsActivity> { scoped { SettingsViewModel(get(), get()) } }
+        scope<SettingsActivity> { scoped { SettingsViewModel(get(), get(), get(), get()) } }
     }
     loadKoinModules(listOf(viewModelModule, helperModule))
 }

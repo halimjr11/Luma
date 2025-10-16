@@ -38,9 +38,9 @@ class MoreStoryAdapter :
         private val binding: ItemStoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: StoryDomain) = binding.run {
-            ivStoryPhoto.load(data.photoUrl)
-            tvStoryName.text = data.name
-            tvStoryDescription.text = data.description
+            ivItemPhoto.load(data.photoUrl)
+            tvItemName.text = data.name
+            tvItemDescription.text = data.description
             binding.root.setOnClickListener {
                 onCardClick?.invoke(data)
             }
