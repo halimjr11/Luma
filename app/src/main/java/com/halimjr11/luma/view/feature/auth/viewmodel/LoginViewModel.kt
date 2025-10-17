@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.luma.data.repository.LumaRemoteRepository
-import com.halimjr11.luma.utils.Constants.UNKNOWN_ERROR
 import com.halimjr11.luma.utils.DomainResult
 import com.halimjr11.luma.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,9 +18,9 @@ class LoginViewModel(
     val loginState: StateFlow<UiState<Boolean>> = _loginState
 
     fun doLogin(email: String, password: String) = viewModelScope.launch(dispatcher.io) {
-        _loginState.value = when (repository.login(email, password)) {
+        _loginState.value = when (val state = repository.login(email, password)) {
             is DomainResult.Success -> UiState.Success(true)
-            else -> UiState.Error(UNKNOWN_ERROR)
+            is DomainResult.Error -> UiState.Error(state.message)
         }
     }
 }

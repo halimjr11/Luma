@@ -3,6 +3,7 @@ package com.halimjr11.luma.view.feature.auth.fragments
 import android.content.Intent
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.halimjr11.luma.R
 import com.halimjr11.luma.databinding.FragmentLoginBinding
 import com.halimjr11.luma.ui.base.BaseFragment
 import com.halimjr11.luma.ui.helper.launchAndCollect
@@ -49,7 +50,7 @@ class LoginFragment :
 
                 is UiState.Error -> Snackbar.make(
                     binding.root,
-                    it.message,
+                    resources.getString(R.string.credential_not_match),
                     Snackbar.LENGTH_SHORT
                 ).show()
 

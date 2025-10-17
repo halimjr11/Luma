@@ -9,6 +9,7 @@
     <string name="error_email_empty">Email cannot be empty</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
     <string name="error_password_empty">Password cannot be empty</string>
+    <string name="credential_not_match">The credentials you entered don’t match our records. Please try again.</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="welcome_back">Welcome back! Let’s continue your story.</string>

@@ -23,9 +23,9 @@ class RegisterViewModel(
         email: String,
         password: String
     ) = viewModelScope.launch(dispatcher.io) {
-        _registerState.value = when (repository.register(name, email, password)) {
+        _registerState.value = when (val state = repository.register(name, email, password)) {
             is DomainResult.Success -> UiState.Success(true)
-            else -> UiState.Error(UNKNOWN_ERROR)
+            is DomainResult.Error -> UiState.Error(state.message)
         }
     }
 }
