@@ -3,6 +3,7 @@ package com.halimjr11.luma.ui.components
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
+import android.util.Patterns
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doOnTextChanged
@@ -116,22 +117,34 @@ class LumaInputField @JvmOverloads constructor(
     private fun validate(input: String) {
         when (inputTypeMode) {
             InputTypeMode.USERNAME -> {
-                error = if (input.length < 3)
+                error = if (input.length < 3 && input.isNotBlank()) {
                     context.getString(R.string.error_username_short)
-                else null
+                } else if (input.isBlank()) {
+                    context.getString(R.string.error_username_empty)
+                } else {
+                    null
+                }
             }
 
             InputTypeMode.EMAIL -> {
-                val isValid = android.util.Patterns.EMAIL_ADDRESS.matcher(input).matches()
-                error = if (!isValid && input.isNotEmpty())
+                val isValid = Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                error = if (!isValid && input.isNotBlank()) {
                     context.getString(R.string.error_email_invalid)
-                else null
+                } else if (input.isBlank()) {
+                    context.getString(R.string.error_email_empty)
+                } else {
+                    null
+                }
             }
 
             InputTypeMode.PASSWORD -> {
-                error = if (input.length < 8)
+                error = if (input.length < 8 && input.isNotBlank()) {
                     context.getString(R.string.error_password_short)
-                else null
+                } else if (input.isBlank()) {
+                    context.getString(R.string.error_password_empty)
+                } else {
+                    null
+                }
             }
 
             else -> Unit
