@@ -138,5 +138,9 @@ class LumaInputField @JvmOverloads constructor(
         }
     }
 
-    fun getText(): String = editTextField.text?.toString().orEmpty()
+    fun getText(): String {
+        return editTextField.text?.toString().orEmpty().also {
+            validate(it)
+        }
+    }
 }
