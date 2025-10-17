@@ -1,6 +1,7 @@
 package com.halimjr11.luma.view.feature.auth.fragments
 
 import android.content.Intent
+import androidx.navigation.fragment.findNavController
 import com.halimjr11.luma.databinding.FragmentLoginBinding
 import com.halimjr11.luma.ui.base.BaseFragment
 import com.halimjr11.luma.ui.helper.launchAndCollect
@@ -25,7 +26,8 @@ class LoginFragment :
 
     override fun setupListeners() = with(binding) {
         btnRegister.setOnClickListener {
-            LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            findNavController().navigate(action)
         }
         btnSignIn.setOnClickListener {
             val email = edLoginEmail.getText()

@@ -1,5 +1,7 @@
 package com.halimjr11.luma.view.feature.auth.fragments
 
+import androidx.navigation.fragment.findNavController
+import com.halimjr11.luma.data.utils.orFalse
 import com.halimjr11.luma.databinding.FragmentRegisterBinding
 import com.halimjr11.luma.ui.base.BaseFragment
 import com.halimjr11.luma.ui.helper.launchAndCollect
@@ -23,7 +25,7 @@ class RegisterFragment :
 
     override fun setupListeners() = with(binding) {
         btnToLogin.setOnClickListener {
-            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            navigateToLogin()
         }
         btnSignUp.setOnClickListener {
             val name = edRegisterName.getText()
@@ -38,12 +40,18 @@ class RegisterFragment :
         launchAndCollect(registerState) {
             when (it) {
                 is UiState.Success -> {
-                    RegisterFragmentDirections.actionRegisterFragmentToLoginFragment(it.data)
+                    navigateToLogin(it.data)
                 }
 
                 else -> {}
             }
         }
         super.observeData()
+    }
+
+    fun navigateToLogin(loggedIn: Boolean? = null) {
+        val action =
+            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment(loggedIn.orFalse())
+        findNavController().navigate(action)
     }
 }
