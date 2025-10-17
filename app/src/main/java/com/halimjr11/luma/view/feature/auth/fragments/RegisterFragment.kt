@@ -1,6 +1,7 @@
 package com.halimjr11.luma.view.feature.auth.fragments
 
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.halimjr11.luma.data.utils.orFalse
 import com.halimjr11.luma.databinding.FragmentRegisterBinding
 import com.halimjr11.luma.ui.base.BaseFragment
@@ -31,7 +32,9 @@ class RegisterFragment :
             val name = edRegisterName.getText()
             val email = edRegisterEmail.getText()
             val password = edRegisterPassword.getText()
-            viewModel.registerUser(name, email, password)
+            if (name.isNotBlank() && email.isNotBlank() && password.isNotBlank()) {
+                viewModel.registerUser(name, email, password)
+            }
         }
         super.setupListeners()
     }
@@ -42,6 +45,12 @@ class RegisterFragment :
                 is UiState.Success -> {
                     navigateToLogin(it.data)
                 }
+
+                is UiState.Error -> Snackbar.make(
+                    binding.root,
+                    it.message,
+                    Snackbar.LENGTH_SHORT
+                ).show()
 
                 else -> {}
             }

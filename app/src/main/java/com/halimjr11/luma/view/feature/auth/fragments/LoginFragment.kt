@@ -2,6 +2,7 @@ package com.halimjr11.luma.view.feature.auth.fragments
 
 import android.content.Intent
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.halimjr11.luma.databinding.FragmentLoginBinding
 import com.halimjr11.luma.ui.base.BaseFragment
 import com.halimjr11.luma.ui.helper.launchAndCollect
@@ -32,7 +33,9 @@ class LoginFragment :
         btnSignIn.setOnClickListener {
             val email = edLoginEmail.getText()
             val password = edLoginPassword.getText()
-            viewModel.doLogin(email, password)
+            if (email.isNotBlank() && password.isNotBlank()) {
+                viewModel.doLogin(email, password)
+            }
         }
         super.setupListeners()
     }
@@ -43,6 +46,12 @@ class LoginFragment :
                 is UiState.Success -> {
                     activity?.startActivity(Intent(activity, MainActivity::class.java))
                 }
+
+                is UiState.Error -> Snackbar.make(
+                    binding.root,
+                    it.message,
+                    Snackbar.LENGTH_SHORT
+                ).show()
 
                 else -> {}
             }
