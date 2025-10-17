@@ -10,6 +10,7 @@
     <string name="error_email_empty">Email tidak boleh kosong</string>
     <string name="error_password_short">Kata sandi harus terdiri dari minimal 8 karakter</string>
     <string name="error_password_empty">Kata sandi tidak boleh kosong</string>
+    <string name="credential_not_match">Kredensial yang Anda masukkan tidak cocok dengan kami. Silakan coba lagi.</string>
     <string name="sign_in">Masuk</string>
     <string name="sign_up">Daftar</string>
     <string name="welcome_back">Selamat datang kembali! Lanjutkan ceritamu.</string>

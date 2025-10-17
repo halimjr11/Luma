@@ -2,6 +2,7 @@ package com.halimjr11.luma.view.feature.auth.fragments
 
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.halimjr11.luma.R
 import com.halimjr11.luma.data.utils.orFalse
 import com.halimjr11.luma.databinding.FragmentRegisterBinding
 import com.halimjr11.luma.ui.base.BaseFragment
@@ -48,7 +49,7 @@ class RegisterFragment :
 
                 is UiState.Error -> Snackbar.make(
                     binding.root,
-                    it.message,
+                    resources.getString(R.string.something_went_wrong),
                     Snackbar.LENGTH_SHORT
                 ).show()
 
