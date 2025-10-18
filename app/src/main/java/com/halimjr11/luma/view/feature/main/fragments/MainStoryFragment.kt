@@ -1,6 +1,8 @@
 package com.halimjr11.luma.view.feature.main.fragments
 
+import android.app.Activity
 import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -36,6 +38,13 @@ class MainStoryFragment :
     }
     override val scope: Scope by fragmentScope()
 
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                viewModel.loadHomeEvents()
+            }
+        }
+
     init {
         loadMainModule()
     }
@@ -67,7 +76,7 @@ class MainStoryFragment :
 
         fabCreate.setOnClickListener {
             val intent = Intent(context, CreateActivity::class.java)
-            startActivity(intent)
+            resultLauncher.launch(intent)
         }
         super.setupListeners()
     }
