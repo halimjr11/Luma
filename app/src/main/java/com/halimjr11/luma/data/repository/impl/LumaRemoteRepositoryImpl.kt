@@ -21,6 +21,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
@@ -92,8 +93,19 @@ class LumaRemoteRepositoryImpl(
     override suspend fun compressAndSave(uri: Uri): File = withContext(dispatcher.io) {
         val bitmap = BitmapFactory.decodeStream(context.contentResolver.openInputStream(uri))
         val file = File(context.cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
-        FileOutputStream(file).use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, it)
+
+        var quality = 90
+        var compressedData: ByteArray
+
+        do {
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream)
+            compressedData = stream.toByteArray()
+            quality -= 5
+        } while (compressedData.size > 1_000_000 && quality > 10)
+
+        FileOutputStream(file).use { fos ->
+            fos.write(compressedData)
         }
         return@withContext file
     }
