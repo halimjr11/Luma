@@ -8,12 +8,34 @@
     android:foreground="?attr/selectableItemBackground"
     app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
 
+    <!-- Gambar Banner -->
     <ImageView
         android:id="@+id/ivCarouselBanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/carousel_event_banner"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         tools:src="@drawable/ic_launcher_background" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:background="#80000000"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvCarouselTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:text="Event Name Here" />
+
+    </RelativeLayout>
+
 
 </com.google.android.material.carousel.MaskableFrameLayout>

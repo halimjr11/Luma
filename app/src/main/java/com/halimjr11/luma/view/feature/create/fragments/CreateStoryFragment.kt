@@ -145,6 +145,7 @@ class CreateStoryFragment : BaseFragment<FragmentCreateStoryBinding, CreateViewM
         launchAndCollect(createState) { state ->
             when (state) {
                 is UiState.Success -> {
+                    activity?.setResult(Activity.RESULT_OK)
                     activity?.finish()
                 }
 

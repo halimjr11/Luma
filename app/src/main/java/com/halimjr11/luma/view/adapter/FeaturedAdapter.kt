@@ -36,6 +36,7 @@ class FeaturedAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: StoryDomain) = binding.run {
             ivCarouselBanner.load(data.photoUrl)
+            tvCarouselTitle.text = data.description
             binding.root.setOnClickListener {
                 onCardClick?.invoke(data)
             }
