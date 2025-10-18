@@ -23,7 +23,6 @@ class DetailViewModel(
 
 
     fun loadDetailStory(id: String) = viewModelScope.launch(dispatcher.io) {
-        println("Jalanan ==> click on data detail on id: $id")
         _detailStory.value = when (val result = repository.detailStory(id)) {
             is DomainResult.Success -> UiState.Success(result.data)
             else -> UiState.Error(UNKNOWN_ERROR)

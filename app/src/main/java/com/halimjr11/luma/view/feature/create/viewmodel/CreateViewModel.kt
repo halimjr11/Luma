@@ -32,7 +32,6 @@ class CreateViewModel(
         lat: Double?,
         lon: Double?
     ) = viewModelScope.launch(dispatcher.io) {
-        println("Jalanan ==> click on data more: post story $uri $description $lat $lon")
         val file = repository.compressAndSave(uri)
         val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val result = repository.uploadStory(
@@ -42,7 +41,6 @@ class CreateViewModel(
             lat = lat,
             lon = lon
         )
-        println("Jalanan ==> click on data more: post check story $result")
 
         _createState.value = when (result) {
             is DomainResult.Success -> UiState.Success(!result.data.error)
