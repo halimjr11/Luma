@@ -30,6 +30,12 @@
         android:theme="@style/Theme.Luma"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.feature.favorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.feature.maps.MapsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.feature.settings.SettingsActivity"
             android:exported="false" />
         <activity

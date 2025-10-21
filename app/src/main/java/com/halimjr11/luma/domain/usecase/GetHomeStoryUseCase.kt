@@ -1,7 +1,7 @@
 package com.halimjr11.luma.domain.usecase
 
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.data.repository.LumaRemoteRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.domain.model.StoryDomain
 import com.halimjr11.luma.utils.Constants.FEATURED_SIZE
 import com.halimjr11.luma.utils.Constants.PAGE_SIZE

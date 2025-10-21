@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.halimjr11.luma.databinding.ErrorViewBinding
 
 class ErrorView @JvmOverloads constructor(
@@ -26,6 +27,12 @@ class ErrorView @JvmOverloads constructor(
     fun setMessageAndCallback(message: String, onClick: () -> Unit) {
         binding.tvErrorMessage.text = message
         binding.lottieError.playAnimation()
+        onRetry = onClick
+    }
+
+    fun setMessegeOnLoading(message: String, onClick: () -> Unit) {
+        binding.lottieError.isVisible = false
+        binding.tvErrorMessage.text = message
         onRetry = onClick
     }
 }

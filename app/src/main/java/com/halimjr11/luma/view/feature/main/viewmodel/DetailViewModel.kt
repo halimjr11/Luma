@@ -3,7 +3,7 @@ package com.halimjr11.luma.view.feature.main.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.data.repository.LumaRemoteRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.domain.model.StoryDomain
 import com.halimjr11.luma.utils.Constants.UNKNOWN_ERROR
 import com.halimjr11.luma.utils.DomainResult

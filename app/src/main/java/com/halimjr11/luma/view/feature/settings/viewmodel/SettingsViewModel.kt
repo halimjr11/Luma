@@ -3,7 +3,7 @@ package com.halimjr11.luma.view.feature.settings.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.data.repository.LumaLocalRepository
+import com.halimjr11.luma.domain.repository.LumaLocalRepository
 import com.halimjr11.luma.ui.helper.LanguageManager
 import com.halimjr11.luma.ui.helper.ThemeManager
 import kotlinx.coroutines.flow.MutableStateFlow

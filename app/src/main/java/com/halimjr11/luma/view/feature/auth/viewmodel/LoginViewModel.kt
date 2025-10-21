@@ -3,7 +3,7 @@ package com.halimjr11.luma.view.feature.auth.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.data.repository.LumaRemoteRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.utils.DomainResult
 import com.halimjr11.luma.utils.UiState
 import kotlinx.coroutines.flow.MutableStateFlow

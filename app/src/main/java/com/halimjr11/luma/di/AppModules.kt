@@ -7,19 +7,19 @@ import com.chuckerteam.chucker.api.RetentionManager
 import com.halimjr11.luma.BuildConfig
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.luma.core.coroutines.impl.DefaultDispatcherProvider
-import com.halimjr11.luma.data.interceptor.AuthInterceptor
-import com.halimjr11.luma.data.interceptor.SessionInterceptor
-import com.halimjr11.luma.data.local.SharedPreferenceHelper
-import com.halimjr11.luma.data.local.impl.SharedPreferenceHelperImpl
-import com.halimjr11.luma.data.mapper.LumaDataMapper
-import com.halimjr11.luma.data.mapper.impl.LumaDataMapperImpl
-import com.halimjr11.luma.data.repository.LocationRepository
-import com.halimjr11.luma.data.repository.LumaLocalRepository
-import com.halimjr11.luma.data.repository.LumaRemoteRepository
-import com.halimjr11.luma.data.repository.impl.LocationRepositoryImpl
-import com.halimjr11.luma.data.repository.impl.LumaLocalRepositoryImpl
-import com.halimjr11.luma.data.repository.impl.LumaRemoteRepositoryImpl
-import com.halimjr11.luma.data.service.LumaService
+import com.halimjr11.luma.data.remote.interceptor.AuthInterceptor
+import com.halimjr11.luma.data.remote.interceptor.SessionInterceptor
+import com.halimjr11.luma.data.local.preferences.SharedPreferenceHelper
+import com.halimjr11.luma.data.local.preferences.impl.SharedPreferenceHelperImpl
+import com.halimjr11.luma.data.remote.mapper.RemoteDataMapper
+import com.halimjr11.luma.data.remote.mapper.impl.RemoteDataMapperImpl
+import com.halimjr11.luma.domain.repository.LocationRepository
+import com.halimjr11.luma.domain.repository.LumaLocalRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
+import com.halimjr11.luma.data.remote.repository.LocationRepositoryImpl
+import com.halimjr11.luma.data.remote.repository.LumaLocalRepositoryImpl
+import com.halimjr11.luma.data.remote.repository.LumaRemoteRepositoryImpl
+import com.halimjr11.luma.data.remote.service.LumaService
 import com.halimjr11.luma.domain.usecase.GetHomeStoryUseCase
 import com.halimjr11.luma.utils.Constants
 import okhttp3.OkHttpClient
@@ -43,7 +43,7 @@ object AppModules {
         single { GetHomeStoryUseCase(get(), get()) }
     }
     private val mapperModule = module {
-        single<LumaDataMapper> { LumaDataMapperImpl(get()) }
+        single<RemoteDataMapper> { RemoteDataMapperImpl(get()) }
     }
     private val sharedPrefHelperModule = module {
         single<SharedPreferenceHelper> { SharedPreferenceHelperImpl(get()) }

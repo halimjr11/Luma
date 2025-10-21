@@ -1,5 +1,6 @@
 package com.halimjr11.luma.ui.helper
 
+import android.net.Uri
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -13,6 +14,8 @@ import kotlinx.coroutines.launch
 fun View.visibleIf(state: Boolean) {
     this.isVisible = state
 }
+
+fun Uri?.orEmpty() = this ?: Uri.EMPTY
 
 fun <T> LifecycleOwner.launchAndCollect(
     flow: Flow<T>,

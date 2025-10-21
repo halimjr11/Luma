@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.halimjr11.luma.databinding.FragmentMainStoryBinding
 import com.halimjr11.luma.ui.base.BaseFragment
@@ -13,7 +14,8 @@ import com.halimjr11.luma.ui.helper.launchAndCollect
 import com.halimjr11.luma.ui.helper.visibleIf
 import com.halimjr11.luma.utils.UiState
 import com.halimjr11.luma.view.adapter.FeaturedAdapter
-import com.halimjr11.luma.view.adapter.MoreStoryAdapter
+import com.halimjr11.luma.view.adapter.StoryAdapter
+import com.halimjr11.luma.view.adapter.StoryLoadStateAdapter
 import com.halimjr11.luma.view.feature.create.CreateActivity
 import com.halimjr11.luma.view.feature.main.di.loadMainModule
 import com.halimjr11.luma.view.feature.main.viewmodel.MainViewModel
@@ -33,8 +35,13 @@ class MainStoryFragment :
     private val featuredAdapter: FeaturedAdapter by lazy {
         FeaturedAdapter()
     }
-    private val moreStoryAdapter: MoreStoryAdapter by lazy {
-        MoreStoryAdapter()
+    private val moreStoryAdapter: StoryAdapter by lazy {
+        StoryAdapter()
+    }
+    private val loadStateAdapter: StoryLoadStateAdapter by lazy {
+        StoryLoadStateAdapter().apply {
+            setOnRetryCallback { }
+        }
     }
     override val scope: Scope by fragmentScope()
 
@@ -50,12 +57,15 @@ class MainStoryFragment :
     }
 
     override fun setupUI() = with(binding) {
+        mainScrollView.isNestedScrollingEnabled = false
         rvFeaturedStories.apply {
             adapter = featuredAdapter
             setHasFixedSize(true)
         }
         rvAllStories.apply {
-            adapter = moreStoryAdapter
+            adapter = moreStoryAdapter.withLoadStateFooter(
+                footer = loadStateAdapter
+            )
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
@@ -68,6 +78,7 @@ class MainStoryFragment :
                 MainStoryFragmentDirections.actionMainStoryFragmentToDetailStoryFragment(it.id)
             findNavController().navigate(action)
         }
+
         moreStoryAdapter.setOnClickCallback {
             val action =
                 MainStoryFragmentDirections.actionMainStoryFragmentToDetailStoryFragment(it.id)
@@ -78,6 +89,12 @@ class MainStoryFragment :
             val intent = Intent(context, CreateActivity::class.java)
             resultLauncher.launch(intent)
         }
+
+        moreStoryAdapter.addLoadStateListener { loadState ->
+            binding.progressLoading.visibleIf(loadState.source.refresh is LoadState.Loading)
+            binding.evMain.visibleIf(loadState.source.refresh is LoadState.NotLoading && moreStoryAdapter.itemCount == 0)
+            binding.mainScrollView.visibleIf(loadState.source.refresh is LoadState.NotLoading && moreStoryAdapter.itemCount > 0)
+        }
         super.setupListeners()
     }
 
@@ -85,9 +102,8 @@ class MainStoryFragment :
         launchAndCollect(homeStories) { state ->
             when (state) {
                 is UiState.Success -> {
-                    val (featured, more) = state.data
+                    val (featured, _) = state.data
                     featuredAdapter.submitList(featured)
-                    moreStoryAdapter.submitList(more)
                     startAutoSlide()
                 }
 
@@ -99,9 +115,10 @@ class MainStoryFragment :
 
                 else -> {}
             }
-            binding.progressLoading.visibleIf(state is UiState.Loading)
-            binding.mainScrollView.visibleIf(state is UiState.Success)
-            binding.evMain.visibleIf(state is UiState.Error)
+        }
+
+        launchAndCollect(homePaging) {
+            moreStoryAdapter.submitData(it)
         }
         super.observeData()
     }

@@ -18,6 +18,7 @@ import com.halimjr11.luma.R
 import com.halimjr11.luma.databinding.FragmentCreateStoryBinding
 import com.halimjr11.luma.ui.base.BaseFragment
 import com.halimjr11.luma.ui.helper.launchAndCollect
+import com.halimjr11.luma.ui.helper.orEmpty
 import com.halimjr11.luma.utils.Constants.CAPTURE_IMAGE
 import com.halimjr11.luma.utils.Constants.CAPTURE_RESULT
 import com.halimjr11.luma.utils.UiState
@@ -105,6 +106,7 @@ class CreateStoryFragment : BaseFragment<FragmentCreateStoryBinding, CreateViewM
             val message = resources.getString(R.string.upload_story_image_error)
             val descError = resources.getString(R.string.upload_story_desc_error)
             val description = edAddDescription.text.toString()
+            val locationInput = switchLocation.isChecked
 
             when {
                 currentImageUri == null && description.isNotBlank() -> Snackbar.make(
@@ -124,10 +126,10 @@ class CreateStoryFragment : BaseFragment<FragmentCreateStoryBinding, CreateViewM
                 else -> {
                     descriptionLayout.error = null
                     viewModel.handleImageAndPost(
-                        uri = currentImageUri!!,
+                        uri = currentImageUri.orEmpty(),
                         description = description,
-                        lat = latitude,
-                        lon = longitude
+                        lat = latitude.takeIf { locationInput },
+                        lon = longitude.takeIf { locationInput }
                     )
                 }
             }

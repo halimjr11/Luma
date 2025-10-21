@@ -41,4 +41,5 @@
     <string name="language_hint">Switch between Bahasa and English</string>
     <string name="setting">Setting</string>
     <string name="logout">Logout</string>
+    <string name="location_input">Location input</string>
 </resources>

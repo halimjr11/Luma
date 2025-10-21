@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.androidx.navigation.safe.args)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -27,6 +28,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 
     buildTypes {
         release {
@@ -38,11 +43,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            freeCompilerArgs.add("-Xopt-in=kotlin.RequiresOptIn")
+        }
     }
     buildFeatures {
         buildConfig = true
@@ -73,6 +81,11 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.paging.runtime.ktx)
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
     androidTestImplementation(libs.androidx.junit)

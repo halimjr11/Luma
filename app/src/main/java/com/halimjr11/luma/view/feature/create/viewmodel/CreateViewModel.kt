@@ -5,8 +5,8 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.data.repository.LocationRepository
-import com.halimjr11.luma.data.repository.LumaRemoteRepository
+import com.halimjr11.luma.domain.repository.LocationRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.utils.Constants.UNKNOWN_ERROR
 import com.halimjr11.luma.utils.DomainResult
 import com.halimjr11.luma.utils.UiState
