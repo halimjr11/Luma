@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
     androidTestImplementation(libs.androidx.junit)

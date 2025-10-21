@@ -21,7 +21,9 @@ constraintlayout = "2.2.1"
 mockk = "1.14.6"
 navigationUiKtx = "2.9.5"
 playServicesLocation = "21.3.0"
+playServicesMaps = "19.2.0"
 timber = "5.0.1"
+mapPlugin = "2.0.1"
 
 [libraries]
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCamera2" }
@@ -54,6 +56,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
@@ -61,4 +64,5 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidx-navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationUiKtx" }
+mapsplatform-secret-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "mapPlugin" }
 
