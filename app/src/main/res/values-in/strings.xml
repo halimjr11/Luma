@@ -43,4 +43,7 @@
     <string name="setting">Setting</string>
     <string name="logout">Logout</string>
     <string name="location_input">Location input</string>
+    <string name="favorite">Favorite</string>
+    <string name="empty_favorite_message">No favorite stories found</string>
+    <string name="set_favorite">set favorite</string>
 </resources>

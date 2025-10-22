@@ -14,4 +14,5 @@ object Constants {
     const val DB_NAME = "luma_db"
     const val ENTITY_NAME = "story"
     const val ENTITY_FAVORITE = "favorite"
+    const val DETAIL_ID_KEY = "detail_id_key"
 }

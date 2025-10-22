@@ -1,6 +1,7 @@
 package com.halimjr11.luma.data.local.mapper.impl
 
 import com.halimjr11.luma.data.local.mapper.LocalDataMapper
+import com.halimjr11.luma.data.local.model.FavoriteEntity
 import com.halimjr11.luma.data.local.model.StoryEntity
 import com.halimjr11.luma.data.remote.model.StoryResponse
 import com.halimjr11.luma.data.utils.orZero
@@ -21,8 +22,34 @@ class LocalDataMapperImpl : LocalDataMapper {
         return domain
     }
 
+    override suspend fun mapFavEntityToDomain(entity: FavoriteEntity): StoryDomain {
+        val domain = StoryDomain(
+            id = entity.id,
+            name = entity.name,
+            description = entity.description,
+            photoUrl = entity.photoUrl,
+            createdAt = entity.createdAt,
+            lat = entity.lat.orZero(),
+            lon = entity.lon.orZero()
+        )
+        return domain
+    }
+
     override suspend fun mapDomainToEntity(domain: StoryDomain): StoryEntity {
         val entity = StoryEntity(
+            id = domain.id,
+            name = domain.name,
+            description = domain.description,
+            photoUrl = domain.photoUrl,
+            createdAt = domain.createdAt,
+            lat = domain.lat,
+            lon = domain.lon
+        )
+        return entity
+    }
+
+    override suspend fun mapFavDomainToEntity(domain: StoryDomain): FavoriteEntity {
+        val entity = FavoriteEntity(
             id = domain.id,
             name = domain.name,
             description = domain.description,

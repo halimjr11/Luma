@@ -7,80 +7,17 @@
     android:padding="16dp"
     tools:context=".view.feature.main.fragments.MainStoryFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/mainScrollView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAllStories"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="24dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvFeaturedStories"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_featured_story" />
-
-            <TextView
-                android:id="@+id/tvAllTitle"
-                style="@style/TextAppearance.Material3.TitleMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/more_stories"
-                android:textColor="?attr/colorOnSurface"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvFeaturedStories" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAllStories"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAllTitle"
-                tools:listitem="@layout/item_story" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-
-    <ProgressBar
-        android:id="@+id/progressLoading"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.halimjr11.luma.ui.components.ErrorView
-        android:id="@+id/evMain"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_story" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCreate"

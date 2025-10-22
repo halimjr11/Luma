@@ -1,8 +1,11 @@
 package com.halimjr11.luma.view.feature.main.fragments
 
+import android.graphics.PorterDuff
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.halimjr11.luma.R
 import com.halimjr11.luma.databinding.FragmentDetailStoryBinding
 import com.halimjr11.luma.domain.model.StoryDomain
 import com.halimjr11.luma.ui.base.BaseFragment
@@ -52,6 +55,21 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding, ViewModel>(
                 else -> {}
             }
         }
+
+        launchAndCollect(isFavoriteFlow) {
+            val color = if (it) {
+                R.color.light_error
+            } else {
+                R.color.white
+            }
+
+            context?.let { ctx ->
+                binding.fabFavorite.setColorFilter(
+                    ContextCompat.getColor(ctx, color),
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+        }
         super.observeData()
     }
 
@@ -61,6 +79,9 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding, ViewModel>(
         tvStoryDate.text = data.createdAt
         tvDetailDescription.text = data.description
         ivDetailPhoto.load(data.photoUrl)
+        fabFavorite.setOnClickListener {
+            viewModel.toggleFavorite(data)
+        }
     }
 
 }

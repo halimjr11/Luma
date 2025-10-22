@@ -1,25 +1,31 @@
 package com.halimjr11.luma.di
 
 import android.content.Context
+import androidx.room.Room
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import com.halimjr11.luma.BuildConfig
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.luma.core.coroutines.impl.DefaultDispatcherProvider
-import com.halimjr11.luma.data.remote.interceptor.AuthInterceptor
-import com.halimjr11.luma.data.remote.interceptor.SessionInterceptor
+import com.halimjr11.luma.data.local.database.LumaDatabase
+import com.halimjr11.luma.data.local.mapper.LocalDataMapper
+import com.halimjr11.luma.data.local.mapper.impl.LocalDataMapperImpl
 import com.halimjr11.luma.data.local.preferences.SharedPreferenceHelper
 import com.halimjr11.luma.data.local.preferences.impl.SharedPreferenceHelperImpl
+import com.halimjr11.luma.data.local.repository.LumaLocalRepositoryImpl
+import com.halimjr11.luma.data.remote.interceptor.AuthInterceptor
+import com.halimjr11.luma.data.remote.interceptor.SessionInterceptor
 import com.halimjr11.luma.data.remote.mapper.RemoteDataMapper
 import com.halimjr11.luma.data.remote.mapper.impl.RemoteDataMapperImpl
-import com.halimjr11.luma.domain.repository.LocationRepository
-import com.halimjr11.luma.domain.repository.LumaLocalRepository
-import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.data.remote.repository.LocationRepositoryImpl
-import com.halimjr11.luma.data.remote.repository.LumaLocalRepositoryImpl
+import com.halimjr11.luma.data.remote.repository.LumaPagingRepositoryImpl
 import com.halimjr11.luma.data.remote.repository.LumaRemoteRepositoryImpl
 import com.halimjr11.luma.data.remote.service.LumaService
+import com.halimjr11.luma.domain.repository.LocationRepository
+import com.halimjr11.luma.domain.repository.LumaLocalRepository
+import com.halimjr11.luma.domain.repository.LumaPagingRepository
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.domain.usecase.GetHomeStoryUseCase
 import com.halimjr11.luma.utils.Constants
 import okhttp3.OkHttpClient
@@ -33,8 +39,9 @@ import timber.log.Timber
 object AppModules {
     private val repositoryModule = module {
         single<LumaRemoteRepository> { LumaRemoteRepositoryImpl(get(), get(), get(), get(), get()) }
-        single<LumaLocalRepository> { LumaLocalRepositoryImpl(get(), get()) }
+        single<LumaLocalRepository> { LumaLocalRepositoryImpl(get(), get(), get(), get()) }
         single<LocationRepository> { LocationRepositoryImpl(get()) }
+        single<LumaPagingRepository> { LumaPagingRepositoryImpl(get(), get(), get(), get()) }
     }
     private val coroutineModule = module {
         single<CoroutineDispatcherProvider> { DefaultDispatcherProvider() }
@@ -44,6 +51,7 @@ object AppModules {
     }
     private val mapperModule = module {
         single<RemoteDataMapper> { RemoteDataMapperImpl(get()) }
+        single<LocalDataMapper> { LocalDataMapperImpl() }
     }
     private val sharedPrefHelperModule = module {
         single<SharedPreferenceHelper> { SharedPreferenceHelperImpl(get()) }
@@ -97,6 +105,16 @@ object AppModules {
         single<LumaService> { get<Retrofit>().create(LumaService::class.java) }
     }
 
+    val databaseModule = module {
+        single {
+            Room.databaseBuilder(
+                get(),
+                LumaDatabase::class.java,
+                Constants.DB_NAME
+            ).fallbackToDestructiveMigration(dropAllTables = false).build()
+        }
+    }
+
     fun getAppModules() = listOf(
         coroutineModule,
         interceptorModule,
@@ -105,6 +123,7 @@ object AppModules {
         serviceModule,
         repositoryModule,
         useCaseModule,
+        databaseModule,
         sharedPrefHelperModule
     )
 }

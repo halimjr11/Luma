@@ -19,16 +19,16 @@ class StoryAdapter :
 
     inner class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(story: StoryDomain) {
-            binding.tvItemName.text = story.name
-            binding.tvItemDescription.text = story.description
-            binding.ivItemPhoto.load(story.photoUrl) {
+        fun bind(story: StoryDomain?) {
+            binding.tvItemName.text = story?.name
+            binding.tvItemDescription.text = story?.description
+            binding.ivItemPhoto.load(story?.photoUrl) {
                 crossfade(true)
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_placeholder)
             }
             binding.root.setOnClickListener {
-                onCardClick?.invoke(story)
+                story?.let { item -> onCardClick?.invoke(item) }
             }
         }
     }
@@ -41,6 +41,6 @@ class StoryAdapter :
     }
 
     override fun onBindViewHolder(holder: StoryViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        holder.bind(getItem(position))
     }
 }

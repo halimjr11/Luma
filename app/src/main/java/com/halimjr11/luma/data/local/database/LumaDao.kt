@@ -1,12 +1,14 @@
 package com.halimjr11.luma.data.local.database
 
 import androidx.paging.PagingSource
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.halimjr11.luma.data.local.model.StoryEntity
 import com.halimjr11.luma.utils.Constants.ENTITY_NAME
 
+@Dao
 interface LumaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertQuote(quote: List<StoryEntity>)

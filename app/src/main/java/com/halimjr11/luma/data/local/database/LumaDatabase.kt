@@ -14,4 +14,5 @@ import com.halimjr11.luma.data.local.model.StoryEntity
 abstract class LumaDatabase : RoomDatabase() {
     abstract fun lumaDao(): LumaDao
     abstract fun remoteKeysDao(): RemoteKeysDao
+    abstract fun favoriteDao(): FavoriteDao
 }

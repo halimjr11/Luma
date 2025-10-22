@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 fun loadMainModule() {
     val viewModelModule = module {
-        scope<MainStoryFragment> { scoped { MainViewModel(get(), get()) } }
+        scope<MainStoryFragment> { scoped { MainViewModel(get()) } }
     }
     loadKoinModules(viewModelModule)
 }

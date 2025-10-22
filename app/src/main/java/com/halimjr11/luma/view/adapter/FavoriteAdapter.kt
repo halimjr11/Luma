@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.halimjr11.luma.R
 import com.halimjr11.luma.databinding.ItemStoryBinding
 import com.halimjr11.luma.domain.model.StoryDomain
 
-class MoreStoryAdapter :
-    ListAdapter<StoryDomain, MoreStoryAdapter.MoreStoryViewHolder>(StoryDiffCallback) {
+class FavoriteAdapter :
+    ListAdapter<StoryDomain, FavoriteAdapter.FavoriteViewHolder>(StoryDiffCallback) {
     private var onCardClick: ((StoryDomain) -> Unit)? = null
 
     fun setOnClickCallback(action: ((StoryDomain) -> Unit)?) {
@@ -19,7 +20,7 @@ class MoreStoryAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MoreStoryViewHolder = MoreStoryViewHolder(
+    ): FavoriteViewHolder = FavoriteViewHolder(
         binding = ItemStoryBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -28,17 +29,21 @@ class MoreStoryAdapter :
     )
 
     override fun onBindViewHolder(
-        holder: MoreStoryViewHolder,
+        holder: FavoriteViewHolder,
         position: Int
     ) {
         holder.bind(getItem(position))
     }
 
-    inner class MoreStoryViewHolder(
+    inner class FavoriteViewHolder(
         private val binding: ItemStoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: StoryDomain) = binding.run {
-            ivItemPhoto.load(data.photoUrl)
+            ivItemPhoto.load(data.photoUrl) {
+                crossfade(true)
+                placeholder(R.drawable.ic_placeholder)
+                error(R.drawable.ic_placeholder)
+            }
             tvItemName.text = data.name
             tvItemDescription.text = data.description
             binding.root.setOnClickListener {

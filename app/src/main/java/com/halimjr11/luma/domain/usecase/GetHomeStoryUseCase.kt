@@ -1,8 +1,8 @@
 package com.halimjr11.luma.domain.usecase
 
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
-import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.domain.model.StoryDomain
+import com.halimjr11.luma.domain.repository.LumaRemoteRepository
 import com.halimjr11.luma.utils.Constants.FEATURED_SIZE
 import com.halimjr11.luma.utils.Constants.PAGE_SIZE
 import com.halimjr11.luma.utils.DomainResult
@@ -14,7 +14,7 @@ class GetHomeStoryUseCase(
 ) {
     suspend operator fun invoke(): DomainResult<Pair<List<StoryDomain>, List<StoryDomain>>> =
         withContext(dispatcher.io) {
-            val result = repository.getStories(PAGE_SIZE)
+            val result = repository.getStories(PAGE_SIZE, 1)
             when (result) {
                 is DomainResult.Success -> {
                     val featured = result.data.take(FEATURED_SIZE)

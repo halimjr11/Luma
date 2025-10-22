@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 fun loadDetailModule() {
     val viewModelModule = module {
-        scope<DetailStoryFragment> { scoped { DetailViewModel(get(), get()) } }
+        scope<DetailStoryFragment> { scoped { DetailViewModel(get(), get(), get()) } }
     }
     loadKoinModules(viewModelModule)
 }

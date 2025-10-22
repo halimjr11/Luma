@@ -26,6 +26,9 @@ class LumaPagingRepositoryImpl(
     override suspend fun getPagingStories(): Flow<PagingData<StoryDomain>> {
         return Pager(
             config = PagingConfig(
+                enablePlaceholders = false,
+                prefetchDistance = 1,
+                initialLoadSize = PAGE_SIZE,
                 pageSize = PAGE_SIZE
             ),
             remoteMediator = LumaRemoteMediator(database, lumaService, localDataMapper),

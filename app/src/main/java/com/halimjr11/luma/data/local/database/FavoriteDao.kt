@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.halimjr11.luma.data.local.model.FavoriteEntity
 import com.halimjr11.luma.utils.Constants.ENTITY_FAVORITE
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteDao {
@@ -14,7 +15,7 @@ interface FavoriteDao {
     suspend fun insertFavorite(story: FavoriteEntity)
 
     @Query("SELECT * FROM $ENTITY_FAVORITE")
-    suspend fun getFavoriteStories(): List<FavoriteEntity>
+    fun getFavoriteStories(): Flow<List<FavoriteEntity>>
 
     @Delete
     suspend fun deleteFavorite(story: FavoriteEntity)

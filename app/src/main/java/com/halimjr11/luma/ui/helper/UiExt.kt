@@ -15,7 +15,7 @@ fun View.visibleIf(state: Boolean) {
     this.isVisible = state
 }
 
-fun Uri?.orEmpty() = this ?: Uri.EMPTY
+fun Uri?.orEmpty(): Uri = this ?: Uri.EMPTY
 
 fun <T> LifecycleOwner.launchAndCollect(
     flow: Flow<T>,

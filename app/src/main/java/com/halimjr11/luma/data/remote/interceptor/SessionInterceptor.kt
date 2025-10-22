@@ -20,7 +20,7 @@ class SessionInterceptor(
         if (response.code == UNAUTHORIZED_CODE) {
             sharedPreferenceHelper.clearLogin()
             val intent = Intent(context, AuthActivity::class.java).apply {
-                Intent.setFlags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             context.startActivity(intent)
             return response

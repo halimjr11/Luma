@@ -7,4 +7,11 @@
         android:iconTint="?attr/colorOnSurface"
         android:title="@string/setting"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuFavorite"
+        android:icon="@drawable/ic_favorite"
+        android:iconTint="?attr/colorOnSurface"
+        android:title="@string/favorite"
+        app:showAsAction="ifRoom" />
 </menu>
