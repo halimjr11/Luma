@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 

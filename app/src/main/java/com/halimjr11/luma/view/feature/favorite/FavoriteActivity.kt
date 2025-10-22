@@ -46,12 +46,14 @@ class FavoriteActivity : AppCompatActivity(), AndroidScopeComponent {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setSupportActionBar(binding.favAppBar)
         setupUI()
         setupListener()
         observeData()
     }
 
     private fun setupUI() = with(binding) {
+        rvFavorite.isVisible = true
         rvFavorite.apply {
             adapter = favoriteAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

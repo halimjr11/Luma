@@ -36,8 +36,10 @@ class LumaLocalRepositoryImpl(
     }
 
     override fun getFavoriteStories(): Flow<List<StoryDomain>> {
-        return database.favoriteDao().getFavoriteStories().transform {
-            it.map { entity -> mapper.mapFavEntityToDomain(entity) }
+        val movies = database.favoriteDao().getFavoriteStories()
+        return movies.transform {
+            val mapped = it.map { entity -> mapper.mapFavEntityToDomain(entity) }
+            emit(mapped)
         }
     }
 }

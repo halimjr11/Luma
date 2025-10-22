@@ -1,8 +1,10 @@
 package com.halimjr11.luma.view.feature.main.fragments
 
 import android.graphics.PorterDuff
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.halimjr11.luma.R
@@ -33,6 +35,9 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding, ViewModel>(
 
     override fun setupUI() {
         viewModel.loadDetailStory(args.id)
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
+            if (args.isFromFav) activity?.finish() else findNavController().popBackStack()
+        }
         super.setupUI()
     }
 

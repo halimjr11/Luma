@@ -4,14 +4,8 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
 import com.halimjr11.luma.core.coroutines.CoroutineDispatcherProvider
 import com.halimjr11.luma.data.local.preferences.SharedPreferenceHelper
-import com.halimjr11.luma.data.paging.LumaRemoteMediator
 import com.halimjr11.luma.data.remote.mapper.RemoteDataMapper
 import com.halimjr11.luma.data.remote.model.AuthRequest
 import com.halimjr11.luma.data.remote.model.StoryResponse
@@ -21,10 +15,7 @@ import com.halimjr11.luma.domain.model.AuthDomain
 import com.halimjr11.luma.domain.model.StoryDomain
 import com.halimjr11.luma.domain.model.UploadStoryDomain
 import com.halimjr11.luma.domain.repository.LumaRemoteRepository
-import com.halimjr11.luma.utils.Constants.PAGE_SIZE
 import com.halimjr11.luma.utils.DomainResult
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody

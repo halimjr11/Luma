@@ -26,7 +26,7 @@ import com.halimjr11.luma.domain.repository.LocationRepository
 import com.halimjr11.luma.domain.repository.LumaLocalRepository
 import com.halimjr11.luma.domain.repository.LumaPagingRepository
 import com.halimjr11.luma.domain.repository.LumaRemoteRepository
-import com.halimjr11.luma.domain.usecase.GetHomeStoryUseCase
+import com.halimjr11.luma.domain.usecase.GetMapStoryUseCase
 import com.halimjr11.luma.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,7 +47,7 @@ object AppModules {
         single<CoroutineDispatcherProvider> { DefaultDispatcherProvider() }
     }
     private val useCaseModule = module {
-        single { GetHomeStoryUseCase(get(), get()) }
+        single { GetMapStoryUseCase(get(), get()) }
     }
     private val mapperModule = module {
         single<RemoteDataMapper> { RemoteDataMapperImpl(get()) }

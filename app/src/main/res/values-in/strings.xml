@@ -46,4 +46,6 @@
     <string name="favorite">Favorite</string>
     <string name="empty_favorite_message">No favorite stories found</string>
     <string name="set_favorite">set favorite</string>
+    <string name="maps_view">Maps View</string>
+    <string name="button_menu_fab">Button menu fab</string>
 </resources>

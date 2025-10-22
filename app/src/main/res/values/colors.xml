@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFFFF</color>
+    <color name="black_trp">#80000000</color>
     <!-- Base Colors -->
     <color name="luma_indigo_mist">#667BB0</color>
     <color name="luma_sky_calm">#89A6C5</color>

@@ -10,7 +10,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAllStories"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,16 +19,47 @@
         tools:listitem="@layout/item_story" />
 
 
+    <!-- FAB Menu 1 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCreate"
+        android:id="@+id/fabCreateStory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/button_create"
-        app:fabCustomSize="50dp"
+        android:src="@drawable/ic_add"
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/fabMap"
+        app:layout_constraintEnd_toEndOf="@id/fabTool"
+        app:tint="@android:color/white" />
+
+    <!-- FAB Menu 2 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/maps_view"
+        android:src="@drawable/ic_pin"
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/fabTool"
+        app:layout_constraintEnd_toEndOf="@id/fabTool"
+        app:tint="@android:color/white" />
+
+    <!-- Main FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabTool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:contentDescription="@string/button_menu_fab"
+        app:backgroundTint="?attr/colorPrimary"
+        app:fabCustomSize="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/ic_add"
-        app:useCompatPadding="true" />
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/ic_tools"
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
