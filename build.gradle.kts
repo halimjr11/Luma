@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.androidx.navigation.safe.args) apply false
     alias(libs.plugins.mapsplatform.secret.gradle.plugin) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.junit5.android) apply false
 }

@@ -3,15 +3,16 @@ agp = "8.13.0"
 cameraCamera2 = "1.5.1"
 coil = "2.7.0"
 converterGson = "3.0.0"
-junitJupiterApi = "6.0.0"
+coreTesting = "2.2.0"
+junitJupiterApi = "5.10.2"
 koinTestJunit5 = "4.1.1"
 kotlin = "2.2.20"
 coreKtx = "1.17.0"
-junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
 kotlinxCoroutinesTest = "1.10.2"
+junitPlatform = "1.10.2"
 libraryNoOp = "4.2.0"
 loggingInterceptor = "5.2.1"
 lottie = "6.6.10"
@@ -27,12 +28,14 @@ roomRuntime = "2.8.2"
 timber = "5.0.1"
 mapPlugin = "2.0.1"
 ksp = "2.2.20-2.0.3"
+mannodermaus = "1.10.0.0"
 
 [libraries]
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCamera2" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCamera2" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCamera2" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationUiKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
@@ -42,12 +45,13 @@ androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "ro
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiterApi" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiterApi" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform" }
+junit-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junitPlatform" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinTestJunit5" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinTestJunit5" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinTestJunit5" }
@@ -74,4 +78,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidx-navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationUiKtx" }
 mapsplatform-secret-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "mapPlugin" }
-
+junit5-android = { id = "de.mannodermaus.android-junit5", version.ref = "mannodermaus" }

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.androidx.navigation.safe.args)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.junit5.android)
 }
 
 android {
@@ -28,7 +29,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    
+
     ksp {
         arg("room.schemaLocation", "$projectDir/schemas")
     }
@@ -96,7 +97,9 @@ dependencies {
     testImplementation(libs.koin.test.junit5)
     testImplementation(libs.mockk)
     testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.junit)
+    testRuntimeOnly(libs.junit.platform.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
 }
