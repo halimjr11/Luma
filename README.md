@@ -94,16 +94,26 @@ UI -.-> MAPS
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/halimjr11/Eventora.git
+   git clone https://github.com/halimjr11/Luma.git
    ```
-2. Open the project in Android Studio
-3. Create a `local.properties` file in the root directory if it doesn't exist
-4. Add your API base URL to `local.properties`:
+2. Open the project in Android Studio.
+3. Create a `local.properties` file in the root directory if it doesn't exist.
+4. Add your API base URL to `local.properties` (if your backend requires it):
    ```properties
    BASE_URL=your_api_base_url_here
    ```
-5. Sync the project with Gradle files
-6. Build and run the app on an emulator or physical device
+5. Add your Google Maps API key:
+   - Open or create `app/src/main/res/values/secrets.xml`.
+   - Set the `google_maps_key` value to your key:
+     ```xml
+     <?xml version="1.0" encoding="utf-8"?>
+     <resources>
+         <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_GOOGLE_MAPS_API_KEY</string>
+     </resources>
+     ```
+   - Keep real keys out of public commits. Prefer using private branches or environment-based secrets for distribution.
+6. Sync the project with Gradle files.
+7. Build and run the app on an emulator or physical device.
 
 ### 🧪 Testing
 
