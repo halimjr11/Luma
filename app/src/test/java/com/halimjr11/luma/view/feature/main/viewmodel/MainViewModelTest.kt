@@ -18,15 +18,18 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import org.junit.jupiter.params.provider.Arguments.arguments
+import java.util.stream.Stream
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @ExtendWith(MockKExtension::class)
-class MainViewModelTest {
+open class MainViewModelTest {
 
     @MockK
     lateinit var repository: LumaPagingRepository
@@ -35,32 +38,27 @@ class MainViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private val testScope = TestScope(testDispatcher)
 
-    private val dummyStories = listOf(
-        StoryDomain("1", "Alice", "Story 1"),
-        StoryDomain("2", "Bob", "Story 2"),
-        StoryDomain("3", "Charlie", "Story 3")
-    )
-
     @BeforeEach
     fun setUp() {
         MockKAnnotations.init(this)
     }
 
-    @Test
-    fun `fetchStories_onSuccess_shouldReturnDataAndNotNull`() = testScope.runTest {
-        // Given
-        val fakePaging = PagingData.from(dummyStories)
+    @ParameterizedTest
+    @MethodSource("provideTestCases")
+    fun `fetchStories should return expected data`(
+        testName: String,
+        inputStories: List<StoryDomain>,
+        assertions: (List<StoryDomain>) -> Unit
+    ) = testScope.runTest {
+        val fakePaging = PagingData.from(inputStories)
         coEvery { repository.getPagingStories() } returns flowOf(fakePaging)
 
         viewModel = MainViewModel(repository)
 
-        // When
         val actualPagingData = viewModel.homePaging.first()
 
-        // Then
         coVerify(exactly = 1) { repository.getPagingStories() }
 
-        // Use AsyncPagingDataDiffer to collect PagingData snapshot
         val differ = AsyncPagingDataDiffer(
             diffCallback = StoryDiffCallback(),
             updateCallback = NoopListCallback(),
@@ -71,36 +69,35 @@ class MainViewModelTest {
         differ.submitData(actualPagingData)
         advanceUntilIdle()
 
-        // Assertions
-        assertNotNull(differ.snapshot())
-        assertEquals(dummyStories.size, differ.snapshot().size)
-        assertEquals(dummyStories[0], differ.snapshot()[0])
+        val snapshot = differ.snapshot()
+        assertNotNull(snapshot)
+        assertions(snapshot.toList().filterNotNull())
     }
 
-    @Test
-    fun `fetchStories_onSuccess_shouldReturnEmptyData`() = testScope.runTest {
-        // Given
-        val fakeEmpty = PagingData.from(emptyList<StoryDomain>())
-        coEvery { repository.getPagingStories() } returns flowOf(fakeEmpty)
-
-        viewModel = MainViewModel(repository)
-
-        // When
-        val actualPagingData = viewModel.homePaging.first()
-
-        // Then
-        coVerify(exactly = 1) { repository.getPagingStories() }
-
-        val differ = AsyncPagingDataDiffer(
-            diffCallback = StoryDiffCallback(),
-            updateCallback = NoopListCallback(),
-            mainDispatcher = testDispatcher,
-            workerDispatcher = testDispatcher
+    companion object {
+        @JvmStatic
+        fun provideTestCases(): Stream<Arguments> = Stream.of(
+            arguments(
+                "with data - should return data and not null",
+                listOf(
+                    StoryDomain("1", "Alice", "Story 1"),
+                    StoryDomain("2", "Bob", "Story 2"),
+                    StoryDomain("3", "Charlie", "Story 3")
+                ),
+                { snapshot: List<StoryDomain> ->
+                    assertEquals(3, snapshot.size)
+                    assertEquals("Alice", snapshot[0].name)
+                    assertEquals("Bob", snapshot[1].name)
+                    assertEquals("Charlie", snapshot[2].name)
+                }
+            ),
+            arguments(
+                "empty data - should return empty list",
+                emptyList<StoryDomain>(),
+                { snapshot: List<StoryDomain> ->
+                    assertTrue(snapshot.isEmpty())
+                }
+            )
         )
-
-        differ.submitData(actualPagingData)
-        advanceUntilIdle()
-
-        assertEquals(0, differ.snapshot().size)
     }
 }

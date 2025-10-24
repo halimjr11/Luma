@@ -97,6 +97,7 @@ dependencies {
     testImplementation(libs.koin.test.junit5)
     testImplementation(libs.mockk)
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
     testRuntimeOnly(libs.junit.platform.engine)
     testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.junit.jupiter.engine)
