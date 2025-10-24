@@ -18,13 +18,15 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.Arguments.arguments
+import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -78,23 +80,27 @@ open class MainViewModelTest {
         @JvmStatic
         fun provideTestCases(): Stream<Arguments> = Stream.of(
             arguments(
-                "with data - should return data and not null",
+                "when loading stories successfully",
                 listOf(
                     StoryDomain("1", "Alice", "Story 1"),
                     StoryDomain("2", "Bob", "Story 2"),
                     StoryDomain("3", "Charlie", "Story 3")
                 ),
                 { snapshot: List<StoryDomain> ->
+                    assertNotNull(snapshot)
                     assertEquals(3, snapshot.size)
-                    assertEquals("Alice", snapshot[0].name)
-                    assertEquals("Bob", snapshot[1].name)
-                    assertEquals("Charlie", snapshot[2].name)
+                    with(snapshot[0]) {
+                        assertEquals("1", id)
+                        assertEquals("Alice", name)
+                        assertEquals("Story 1", description)
+                    }
                 }
             ),
             arguments(
-                "empty data - should return empty list",
+                "when there are no stories",
                 emptyList<StoryDomain>(),
                 { snapshot: List<StoryDomain> ->
+                    assertNotNull(snapshot)
                     assertTrue(snapshot.isEmpty())
                 }
             )
